@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :controller do
+
   describe '#show' do
 
     before do
@@ -23,8 +24,40 @@ RSpec.describe ArticlesController, type: :controller do
         expect(flash[:error]).to_not be_nil
       end
     end
-
-
   end
 
+  describe '#index' do
+    before do
+      # want to create 10 articles before running tests
+      @articles_list = FactoryGirl.create_list(:article, 10) # is this correct, does it matter if the title and description are all the same??
+    end
+
+    it 'finds a list of articles' do
+      get :index, articles: @articles_list
+      # expect(@articles_list.length).to eq(10)
+      # or
+      p assigns(:articles)
+
+
+      expect(assigns(:articles)).to eq(@articles_list)
+
+    end
+
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
