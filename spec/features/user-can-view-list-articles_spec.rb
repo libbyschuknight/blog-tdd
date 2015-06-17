@@ -3,26 +3,25 @@ require 'rails_helper'
 feature "User can view a list of articles" do
   background do
     Article.destroy_all
-    @articles = FactoryGirl.create_list(:article, 10)
+    FactoryGirl.create(:article, title: "First post!", description: "Kia ora.. Morningside for life, this cool housie is as kiwi as as a pretty suss hongi. Mean while, in West Auckland, Jim Hickey and Rhys Darby were up to no good with a bunch of crook mates. The outrageously awesome force of his cooking up a feed was on par with James and the Giant Peach's bung cookie time. Put the jug on will you bro, all these random hangis can wait till later.")
+    FactoryGirl.create(:article, title: "Last post!")
   end
 
   scenario "it shows a list of articles" do
     visit articles_path(@artciles)
-    # expect page to have a list of 10 titles??
-    # or just test that last article is showing
-    # can you test for all to show?
-    # or would first and last be good, or would just having last be fine??
 
-    puts body
-
-    # expect(page).to have_selector("id", @articles.last.id)
-
-    expect(page).to have_content("id='#{@articles.last.id}'")
-
-
-
+    expect(page).to have_content("First post!")
+    expect(page).to have_content("Last post!")
+    expect(page).to have_content("Kia ora.. Morningside for life, this cool...")
   end
 
+  scenario "user clicks title and is redirected to article page" do
+    visit articles_path(@articles)
 
+    click_on("First post!")
+
+    expect(page).to have_content("First post!")
+    expect(page).to have_content("Kia ora.. Morningside for life, this cool housie is as kiwi as as a pretty suss hongi. Mean while, in West Auckland, Jim Hickey and Rhys Darby were up to no good with a bunch of crook mates. The outrageously awesome force of his cooking up a feed was on par with James and the Giant Peach's bung cookie time. Put the jug on will you bro, all these random hangis can wait till later.")
+  end
 
 end

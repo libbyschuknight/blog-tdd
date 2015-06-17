@@ -1,8 +1,11 @@
 
 <ul>
   <% @articles.each do |article| %>
-  <!-- this should work (did have class='title') BUT want to have it so that it is testing that there are 10 different article titles being listed
-  do something with id ?????-->
-    <li id= '<%= article.id %>'> <%= article.title %> </li>
+    <li id='<%= article.id %>'>
+      <h2>
+        <%= link_to article.title, article_path(article) %>
+      </h2>
+      <section><%= truncate(article.description, length: 50, separator: ' ') %> </section>
+     </li>
   <% end %>
 </ul>
