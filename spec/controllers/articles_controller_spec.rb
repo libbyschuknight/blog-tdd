@@ -91,7 +91,6 @@ RSpec.describe ArticlesController, type: :controller do
         expect(response).to redirect_to(new_article_path)
         # expect(response).to redirect_to("/articles/new")
 
-
       end
 
     end
