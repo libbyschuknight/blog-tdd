@@ -29,18 +29,12 @@ RSpec.describe ArticlesController, type: :controller do
   describe '#index' do
     before do
       Article.destroy_all
-
-      # want to create 10 articles before running tests
-      @articles = FactoryGirl.create_list(:article, 10) # is this correct, does it matter if the title and description are all the same??
+      @articles = FactoryGirl.create_list(:article, 10)
     end
 
     it 'finds a list of articles' do
       get :index, articles: @articles
-      # expect(@articles.length).to eq(10)
-      # or
-
       expect(assigns(:articles)).to eq(@articles)
-
     end
 
   end
