@@ -26,10 +26,12 @@ RSpec.describe ArticlesController, type: :controller do
       it "sets an error messa ge in flash" do
         expect(flash[:error]).to_not be_nil
       end
+
     end
   end
 
   describe "#index" do
+
     before do
       # fix line below up, so that only creating up to 3 articles rather than 10
       @articles = FactoryGirl.create_list(:article, 10)
@@ -39,11 +41,11 @@ RSpec.describe ArticlesController, type: :controller do
       get :index, articles: @articles
       expect(assigns(:articles)).to eq(@articles)
     end
-
   end
 
 
   describe "#new" do
+
     before do
       get :new
     end
@@ -57,9 +59,11 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 
+
   describe "#create" do
 
     context "if valid parameters" do
+
       before do
         @valid_params = FactoryGirl.attributes_for(:article)
         post :create, {:article => @valid_params}
@@ -76,6 +80,7 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     context "if invalid parameters" do
+
       before do
         @invalid_params = FactoryGirl.attributes_for(:article, title: "", description: "")
         # Article.create(title: "", description: "")
@@ -92,7 +97,6 @@ RSpec.describe ArticlesController, type: :controller do
         # expect(response).to redirect_to("/articles/new")
 
       end
-
     end
   end
 end

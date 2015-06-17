@@ -30,6 +30,7 @@ feature "User can view a list of articles on home page," do
 
     expect(page).to have_content("New Article")
   end
+
 end
 
 
