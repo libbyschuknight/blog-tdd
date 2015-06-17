@@ -40,8 +40,6 @@ RSpec.describe ArticlesController, type: :controller do
       expect(assigns(:articles)).to eq(@articles)
     end
 
-
-
   end
 
 
@@ -78,13 +76,26 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     context "if invalid parameters" do
+      before do
+        @invalid_params = FactoryGirl.attributes_for(:article, title: "", description: "")
+        # Article.create(title: "", description: "")
+        post :create, {:article => @invalid_params}
+        @article = Article.find_by(@invalid_params)
+      end
 
+      it "a new artcile is not created" do
+        expect(@article).to be_falsey
+      end
+
+      it "redirects to the new article page" do
+        expect(response).to redirect_to(new_article_path)
+        # expect(response).to redirect_to("/articles/new")
+
+
+      end
 
     end
-
-
   end
-
 end
 
 

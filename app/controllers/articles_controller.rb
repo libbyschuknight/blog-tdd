@@ -16,7 +16,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.create(article_params)
+    unless @article = Article.create(article_params)
+      redirect_to new_article_path
+      # render "/articles/new"
+    end
     redirect_to @article
   end
 
