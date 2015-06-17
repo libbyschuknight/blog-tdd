@@ -5,7 +5,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    unless @article = Article.find_by_id(params[:id])
+    @article = Article.find_by_id(params[:id])
+    unless @article
       flash[:error] = "Article not found"
       redirect_to root_path
     end
@@ -16,12 +17,11 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    if @article = Article.create(article_params)
+    @article = Article.new(article_params)
+    if @article.save
       redirect_to @article
     else
-      p new_article_path
       redirect_to(new_article_path)
-      # render "/articles/new"
     end
   end
 
