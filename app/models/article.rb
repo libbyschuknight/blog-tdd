@@ -6,7 +6,7 @@ class Logger
   end
 end
 
-class Translate
+class BadTranslator
   def self.text(content, language)
     "You should not see this text."
   end
@@ -22,8 +22,8 @@ class Article < ActiveRecord::Base
   # revisit and fix other tests so can have length minimum of 30, so there has to be something in description
   validates :description, length: { in: 0..500 }
 
-  def translate_description(language)
-    translation = Translate.text(description, language)
+  def translate_description(translator = BadTranslator)
+    translation = translator.text(description)
     Logger.log(description, translation)
     translation
   end
