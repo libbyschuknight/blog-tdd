@@ -25,3 +25,13 @@ feature "User can view a list of articles" do
   end
 
 end
+
+
+
+
+## would all of this actually be view testing not controller testing??
+# expect to have on the page title text
+  # and a place for user to write in title
+# expect to have on the page descriptuon text
+  #and a place for the user to write in the description (content) of the article
+# need form for user to add in title and description
