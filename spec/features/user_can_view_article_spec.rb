@@ -36,10 +36,21 @@ feature "User can view an article" do
 
   scenario "it shows comments on the article page" do
     # working on site, why not here??
+    fill_in "comment_content", with: "This is a content for a comment."
+    click_button("Create comment")
     expect(page).to have_content("This is a content for a comment.")
 
   end
-
-
-
 end
+
+
+
+
+
+
+
+
+
+
+
+
