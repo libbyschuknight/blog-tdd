@@ -8,14 +8,10 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "#create" do
     before do
-      # @valid_params = FactoryGirl.attributes_for(:comment)
-      # post :create, {:comment => @valid_params}
-
       @article = FactoryGirl.create(:article)
-      new_comment = FactoryGirl.
+      new_comment = FactoryGirl.create(:comment, article_id: @article, content: "this is a comment")
 
-
-      @comment = Comment.find_by(@va)
+      @comment = Comment.find_by_id(new_comment.id)
     end
 
     it "a new comment is created" do

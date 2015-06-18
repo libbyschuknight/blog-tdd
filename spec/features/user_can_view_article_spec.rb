@@ -7,24 +7,33 @@ feature "User can view an article" do
 
   # think it needs to be create rather than build because want the title to be put onto the comments page
   # although I won't be accessing the comments page through this test???
-  let(:article) { FactoryGirl.create(:article, title: "Bananas") }
 
+  let(:article) { FactoryGirl.create(:article, title: "Bananas") }
+  background { visit article_path(article) }
 
   scenario "it shows an articles' details" do
-    visit article_path(article)
     expect(page).to have_content(article.title)
     expect(page).to have_content(article.description)
   end
 
   scenario "it shows a form for adding a comment" do
-    visit article_path(article)
     expect(page).to have_content("Add a comment:")
-    # can I test if there is a form on the page??
+    expect(page).to have_css("form[action='#{article_comments_path(article)}']")
+
   end
 
+  scenario "it creates a new comment" do
+    fill_in "comment_content", with: "This is a content for a comment"
+    click_button("Create comment")
 
-  # now need to test what happens when form is filled in and submit is clicked
+    expect(Comment.last.content).to eq("This is a content for a comment")
+    # expect(Comment.last.article_id).to eq(article.id)
 
+    # raise Comment.last.methods.sort.inspect
+    expect(Comment.last.article).to eq(article)
+
+
+  end
 
 
 end
