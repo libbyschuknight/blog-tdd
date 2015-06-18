@@ -2,6 +2,12 @@
 
 <p><%= @article.description %></p>
 
+<% @article.comments.each do |comment| %>
+  <p> <%= comment.content %> </p>
+<% end %>
+
+
+
 <h4>Add a comment: </h4>
 
 

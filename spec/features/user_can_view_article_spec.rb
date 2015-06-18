@@ -23,17 +23,23 @@ feature "User can view an article" do
   end
 
   scenario "it creates a new comment" do
-    fill_in "comment_content", with: "This is a content for a comment"
+    fill_in "comment_content", with: "This is a content for a comment."
     click_button("Create comment")
 
-    expect(Comment.last.content).to eq("This is a content for a comment")
+    expect(Comment.last.content).to eq("This is a content for a comment.")
     # expect(Comment.last.article_id).to eq(article.id)
 
     # raise Comment.last.methods.sort.inspect
     expect(Comment.last.article).to eq(article)
+  end
 
+
+  scenario "it shows comments on the article page" do
+
+    expect(page).to have_content("This is a content for a comment.")
 
   end
+
 
 
 end
