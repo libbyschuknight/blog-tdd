@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require "factory_girl"
+
+3.times do
+  article = FactoryGirl.create(:article)
+
+  5.times do
+    FactoryGirl.create(:comment, article: article)
+  end
+end
