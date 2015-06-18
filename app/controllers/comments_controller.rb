@@ -1,8 +1,7 @@
 class CommentsController < ApplicationController
 
-  def new
-    @article = params[:article]
-    p @article
+  def create
+
   end
 
 

@@ -23,7 +23,7 @@ RSpec.describe ArticlesController, type: :controller do
         expect(response).to redirect_to(root_path)
       end
 
-      it "sets an error messa ge in flash" do
+      it "sets an error message in flash" do
         expect(flash[:error]).to_not be_nil
       end
 

@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
   root to: 'articles#index'
 
-  # shallow nesting - see nested-resources on rubyonrails
+  # shallow nesting - see nested-resources on rubyonrails??
   resources :articles do
-    resources :comments, only: [ :index, :new, :create ]
+    resources :comments
   end
-  resources :comments, only: [ :show, :edit, :update, :destroy ]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

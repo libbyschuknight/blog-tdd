@@ -16,15 +16,15 @@ feature "User can view an article" do
     expect(page).to have_content(article.description)
   end
 
-  scenario "and a user click on 'Add comment' for article" do
+  scenario "it shows a form for adding a comment" do
     visit article_path(article)
-    click_on("Add Comment")
-
-    # expect page to redirect to new comment page? is this something that would be tested in here? is it something that the user would be thinking about / expecting to happen?
-    p article
-
-
-    expect(page).to have_content("Bananas")
+    expect(page).to have_content("Add a comment:")
+    # can I test if there is a form on the page??
   end
+
+
+  # now need to test what happens when form is filled in and submit is clicked
+
+
 
 end
