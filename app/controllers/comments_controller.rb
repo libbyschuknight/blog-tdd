@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comment = Comment.find_by
+    # @comment = Comment.find_by
+
   end
 
 

@@ -35,7 +35,7 @@ feature "User can view an article" do
 
 
   scenario "it shows comments on the article page" do
-
+    # working on site, why not here??
     expect(page).to have_content("This is a content for a comment.")
 
   end
