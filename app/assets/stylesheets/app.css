@@ -14,6 +14,7 @@ header {
 #container {
   margin: 0 auto;
   margin-top: 50px;
+  margin-bottom: 100px;
   width: 70%;
 }
 
@@ -47,6 +48,17 @@ li {
   font-size: small;
 
 }
+
+textarea {
+  width: 500px;
+  height: 130px;
+}
+
+
+
+
+
+
 
 
 

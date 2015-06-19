@@ -22,7 +22,7 @@ App.prototype = {
           this.date = object.created_at;
 
           $("h3").after(
-            "<ul id='" + this.id + "'>" +
+            "<ul id='" + this.id + "' class='comment' >" +
               "<li>" +
                 "<p>" + this.content + "</p>" +
                 "<p>" + this.date + "</p>" +
