@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 feature "User can view an article" do
-  # background do
-  #   @article = FactoryGirl.create(:article, title: "Bananas")
-  # end
-
-  # think it needs to be create rather than build because want the title to be put onto the comments page
-  # although I won't be accessing the comments page through this test???
 
   let(:article) { FactoryGirl.create(:article, title: "Bananas") }
   background { visit article_path(article) }
