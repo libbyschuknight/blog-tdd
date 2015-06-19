@@ -2,21 +2,14 @@ function App() {}
 
 App.prototype = {
   run: function run() {
-    // console.log("Starting AJAX");
 
     var url = $("#new_comment").attr("action");
-    // console.log(url);
 
     $.ajax({
       type: "GET",
       url: url,
       success: function (data) {
-
         data.forEach(function(object){
-
-
-
-          // console.log(object);
           this.id = object.id;
           this.content = object.content;
           this.date = object.created_at;
@@ -28,12 +21,49 @@ App.prototype = {
                 "<p>" + this.date + "</p>" +
               "</li>" +
             "</ul>"
-            )
-
-        });
-
+          );
+        })
+      },
+      error: function(error) {
+        console.log("error: ", error);
       }
-    })
+    });
 
+    $(".new_comment").hide();
+
+
+    $("#container").on("click", ".add_comment", function(){
+      var $form = $(this).next()
+      var klass = $form.attr("class")
+      $comment_class = $("." + klass)
+      $comment_class.toggle();
+    })
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
