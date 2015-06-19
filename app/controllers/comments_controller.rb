@@ -13,7 +13,11 @@ class CommentsController < ApplicationController
 
   def show
     # @comment = Comment.find_by
+  end
 
+  def destroy
+    comment = Comment.find_by_id(params[:id])
+    comment.destroy
   end
 
 

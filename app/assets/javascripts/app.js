@@ -3,7 +3,6 @@ function App() {}
 App.prototype = {
   run: function run() {
 
-    $("container")
 
     // ###### Using AJAX to show comments on Article page
     var url = $("#new_comment").attr("action");
@@ -49,6 +48,25 @@ App.prototype = {
       $comment_class.toggle();
     })
 
+
+    $("#container").on("click", ".delete", function(event) {
+      event.preventDefault();
+      var $link = $(this);
+      var url = $link.attr("href");
+      console.log(url);
+
+      $.ajax ({
+        type: "DELETE",
+        url: url,
+        success: function(data) {
+          console.log(data);
+        },
+        error: function (error) {
+          console.log("error: ", error);
+        }
+
+      });
+    });
 
 
 
