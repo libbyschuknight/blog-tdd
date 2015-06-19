@@ -2,15 +2,38 @@ function App() {}
 
 App.prototype = {
   run: function run() {
-    console.log("Starting AJAX");
-    var article_id = 1;
+    // console.log("Starting AJAX");
+
+    var url = $("#new_comment").attr("action");
+    // console.log(url);
+
     $.ajax({
       type: "GET",
-      url: "/articles/" + article_id + "/comments",
+      url: url,
       success: function (data) {
-        console.log("Success with AJAX!");
-        console.log(data);
+
+        data.forEach(function(object){
+
+
+
+          // console.log(object);
+          this.id = object.id;
+          this.content = object.content;
+          this.date = object.created_at;
+
+          $("h3").after(
+            "<ul id='" + this.id + "'>" +
+              "<li>" +
+                "<p>" + this.content + "</p>" +
+                "<p>" + this.date + "</p>" +
+              "</li>" +
+            "</ul>"
+            )
+
+        });
+
       }
     })
+
   }
 }
