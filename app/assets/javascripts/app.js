@@ -3,6 +3,9 @@ function App() {}
 App.prototype = {
   run: function run() {
 
+    $("container")
+
+    // ###### Using AJAX to show comments on Article page
     var url = $("#new_comment").attr("action");
 
     $.ajax({
@@ -10,15 +13,21 @@ App.prototype = {
       url: url,
       success: function (data) {
         data.forEach(function(object){
+          // console.log(object)
           this.id = object.id;
           this.content = object.content;
           this.date = object.created_at;
+          this.article_id = object.article_id
+          // console.log(this.article_id)
 
           $("h3").after(
             "<ul id='" + this.id + "' class='comment' >" +
               "<li>" +
                 "<p>" + this.content + "</p>" +
                 "<p>" + this.date + "</p>" +
+                "<p>" +
+                "<button type='button'> <a id='" + this.id +
+                "'class = 'delete' href='/articles/" + this.article_id + "/comments/" + this.id + "'>delete<a/></button></p>" +
               "</li>" +
             "</ul>"
           );
@@ -29,8 +38,9 @@ App.prototype = {
       }
     });
 
-    $(".new_comment").hide();
 
+    // ######## Add a comment button, on Article page - hide / show
+    $(".new_comment").hide();
 
     $("#container").on("click", ".add_comment", function(){
       var $form = $(this).next()
@@ -38,6 +48,11 @@ App.prototype = {
       $comment_class = $("." + klass)
       $comment_class.toggle();
     })
+
+
+
+
+
   }
 }
 

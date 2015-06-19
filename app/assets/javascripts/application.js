@@ -14,6 +14,9 @@
 //= require jquery_ujs
 //= require_tree .
 
+
+// same as document.ready
+
 $(function() {
   var app = new App();
   app.run();
