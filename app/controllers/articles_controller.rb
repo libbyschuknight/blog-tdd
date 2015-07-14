@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to @article
     else
+      # add error? before redirecting? or display on page redirected to??
       redirect_to(new_article_path)
     end
   end

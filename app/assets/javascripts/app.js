@@ -12,7 +12,7 @@ App.prototype = {
       url: url,
       success: function (data) {
         data.forEach(function(object){
-          // console.log(object)
+          console.log(object)
           this.id = object.id;
           this.content = object.content;
           this.date = object.created_at;
