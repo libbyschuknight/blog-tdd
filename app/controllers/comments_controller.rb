@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   def index
     article = Article.find(params[:article_id])
     render json: article.comments
@@ -22,6 +21,4 @@ class CommentsController < ApplicationController
 
     redirect_to article_path(params[:article_id])
   end
-
-
 end

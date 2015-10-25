@@ -6,7 +6,6 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
   describe "#show" do
-
     before do
       @article = FactoryGirl.create(:article)
     end
@@ -17,7 +16,7 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     context "when article doesn't exist" do
-      before {get :show, id: @article.id-1}
+      before { get :show, id: @article.id - 1 }
 
       it "redirects to home page" do
         expect(response).to redirect_to(root_path)
@@ -26,12 +25,10 @@ RSpec.describe ArticlesController, type: :controller do
       it "sets an error message in flash" do
         expect(flash[:error]).to_not be_nil
       end
-
     end
   end
 
   describe "#index" do
-
     before do
       # fix line below up, so that only creating up to 3 articles rather than 10
       @articles = FactoryGirl.create_list(:article, 10)
@@ -43,9 +40,7 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 
-
   describe "#new" do
-
     before do
       get :new
     end
@@ -59,11 +54,8 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 
-
   describe "#create" do
-
     context "if valid parameters" do
-
       before do
         @valid_params = FactoryGirl.attributes_for(:article)
         post :create, {:article => @valid_params}
@@ -80,11 +72,10 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     context "if invalid parameters" do
-
       before do
         @invalid_params = FactoryGirl.attributes_for(:article, title: "", description: "")
         # Article.create(title: "", description: "")
-        post :create, {:article => @invalid_params}
+        post :create, { :article => @invalid_params }
         @article = Article.find_by(@invalid_params)
       end
 
@@ -95,33 +86,7 @@ RSpec.describe ArticlesController, type: :controller do
       it "redirects to the new article page" do
         expect(response).to redirect_to(new_article_path)
         # expect(response).to redirect_to("/articles/new")
-
       end
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
